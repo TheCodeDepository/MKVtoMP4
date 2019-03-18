@@ -68,7 +68,7 @@ namespace MKVtoMP4
             BitrateBox.Text = e.Bitrate.ToString();
             fpsBox.Text = e.Fps.ToString();
             frameBox.Text = e.Frame.ToString();
-            sizeBox.Text = (e.SizeKb / 1000).ToString() + " MB";
+            sizeBox.Text = (e.SizeKb / 1000.00).ToString() +" MB";
             processedBox.Text = new TimeSpan(0, 0, 0, (int)processed).ToString();
         }
 
@@ -124,7 +124,8 @@ namespace MKVtoMP4
                 }
                 if (File.Exists(Output))
                 {
-                    File.Delete(Output);
+
+                   // File.Delete(Output);
                 }
 
                 ffmpegEngine = null;
