@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MKVtoMP4
+namespace VideoConverter
 {
     public static class FileProperties
     {

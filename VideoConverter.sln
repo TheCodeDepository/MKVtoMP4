@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MKVtoMP4", "MKVtoMP4\MKVtoMP4.csproj", "{167995C5-9896-4FF3-9A3B-4EC8E3BB3995}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoConverter", "VideoConverter\VideoConverter.csproj", "{167995C5-9896-4FF3-9A3B-4EC8E3BB3995}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -9,7 +9,7 @@ using System.Diagnostics;
 
 
 
-namespace MKVtoMP4
+namespace VideoConverter
 {
     public partial class Main : MetroFramework.Forms.MetroForm
     {
@@ -18,8 +18,8 @@ namespace MKVtoMP4
             InitializeComponent();
         }
 
-        public string Input { get; set; }
-        public string Output { get; set; }
+        public string Input { get { return inputFileTxt.Text; } set { inputFileTxt.Text = value; } }
+        public string Output { get { return outputFileTxt.Text; } set { outputFileTxt.Text = value; } }
 
         public Engine ffmpegEngine { get; set; }
         public bool Processing { get; set; }
@@ -31,10 +31,6 @@ namespace MKVtoMP4
         {
             time_started = DateTime.Now;
             video_Length = FileProperties.GetTimeSpanProperty(Input, FileProperties.PropertiesEnum.Length);
-
-
-
-
             ConvertVideo();
             startConvertBtn.Enabled = false;
             cancelConvertBtn.Enabled = true;
@@ -42,7 +38,7 @@ namespace MKVtoMP4
 
         private void ConvertVideo()
         {
-            ffmpegEngine = new Engine("C:\\ffmpeg\\ffmpeg.exe");
+            ffmpegEngine = new Engine("ffmpeg.exe");
 
             ffmpegEngine.Progress += OnProgress;
             ffmpegEngine.Complete += OnComplete;
@@ -60,7 +56,7 @@ namespace MKVtoMP4
             var time_remaining = (time_taken / processed) * amount_left;
             var percent_Complete = (processed / video_Length.TotalSeconds) * 100;
 
-            progressBar1.Value = (int)percent_Complete;
+            progressBar.Value = (int)percent_Complete;
 
             timeRemaining.Text = new TimeSpan(0, 0, (int)time_remaining / 60, 0).ToString();
             timeElapsed.Text = new TimeSpan(0, 0, 0, (int)time_taken).ToString();
@@ -68,7 +64,7 @@ namespace MKVtoMP4
             BitrateBox.Text = e.Bitrate.ToString();
             fpsBox.Text = e.Fps.ToString();
             frameBox.Text = e.Frame.ToString();
-            sizeBox.Text = (e.SizeKb / 1000.00).ToString() +" MB";
+            sizeBox.Text = (e.SizeKb / 1000.00).ToString() + " MB";
             processedBox.Text = new TimeSpan(0, 0, 0, (int)processed).ToString();
         }
 
@@ -78,8 +74,8 @@ namespace MKVtoMP4
         private void OnComplete(object sender, ConversionCompleteEventArgs e)
         {
             Processing = false;
-            MetroFramework.MetroMessageBox.Show(this, "Process Complete!");
-            progressBar1.Value = 0;
+            MetroMessageBox.Show(this, "Process Complete!");
+            progressBar.Value = 0;
             cancelConvertBtn.Enabled = false;
             startConvertBtn.Enabled = true;
         }
@@ -122,12 +118,6 @@ namespace MKVtoMP4
                 {
                     proc.Kill();
                 }
-                if (File.Exists(Output))
-                {
-
-                   // File.Delete(Output);
-                }
-
                 ffmpegEngine = null;
                 Processing = false;
                 startConvertBtn.Enabled = true;
@@ -145,7 +135,6 @@ namespace MKVtoMP4
         private void cancelConvertBtn_Click(object sender, EventArgs e)
         {
             CancelConversion();
-
         }
 
         private void inputFileTxt_ButtonClick(object sender, EventArgs e)
@@ -153,13 +142,25 @@ namespace MKVtoMP4
             OpenFileDialog open = new OpenFileDialog();
             if (open.ShowDialog() == DialogResult.OK)
             {
-                inputFileTxt.Text = open.FileName;
-                outputFileTxt.Text = Path.GetDirectoryName(open.FileName) 
-                                    + "\\"
-                                    + Path.GetFileNameWithoutExtension(open.FileName)
-                                    + "_CONVERTED.mp4";
                 Input = open.FileName;
-                Output = outputFileTxt.Text;
+                Output = UpdateSamplePath(open.FileName, fileType.Text);
+            }
+        }
+
+        private string UpdateSamplePath(string input, string extension = ".mp4")
+        {
+            return Path.GetDirectoryName(input)
+                                + "\\"
+                                + Path.GetFileNameWithoutExtension(input)
+                                + "_output"
+                                + extension;
+        }
+
+        private void fileType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(fileType.Text) && !String.IsNullOrWhiteSpace(Input))
+            {
+                Output = UpdateSamplePath(Input, fileType.Text);
             }
         }
     }
