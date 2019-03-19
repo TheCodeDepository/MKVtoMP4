@@ -57,6 +57,8 @@
             // 
             // progressBar
             // 
+            this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.progressBar.Location = new System.Drawing.Point(23, 162);
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(754, 23);
@@ -64,6 +66,8 @@
             // 
             // startConvertBtn
             // 
+            this.startConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.startConvertBtn.Location = new System.Drawing.Point(648, 63);
             this.startConvertBtn.Name = "startConvertBtn";
             this.startConvertBtn.Size = new System.Drawing.Size(106, 23);
@@ -74,6 +78,8 @@
             // 
             // cancelConvertBtn
             // 
+            this.cancelConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelConvertBtn.Enabled = false;
             this.cancelConvertBtn.Location = new System.Drawing.Point(648, 92);
             this.cancelConvertBtn.Name = "cancelConvertBtn";
@@ -89,7 +95,7 @@
             // 
             // 
             this.inputFileTxt.CustomButton.Image = null;
-            this.inputFileTxt.CustomButton.Location = new System.Drawing.Point(496, 1);
+            this.inputFileTxt.CustomButton.Location = new System.Drawing.Point(409, 1);
             this.inputFileTxt.CustomButton.Name = "";
             this.inputFileTxt.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.inputFileTxt.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -108,7 +114,7 @@
             this.inputFileTxt.SelectionStart = 0;
             this.inputFileTxt.ShortcutsEnabled = true;
             this.inputFileTxt.ShowButton = true;
-            this.inputFileTxt.Size = new System.Drawing.Size(518, 23);
+            this.inputFileTxt.Size = new System.Drawing.Size(431, 23);
             this.inputFileTxt.TabIndex = 24;
             this.inputFileTxt.UseSelectable = true;
             this.inputFileTxt.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -121,14 +127,13 @@
             // 
             // 
             this.outputFileTxt.CustomButton.Image = null;
-            this.outputFileTxt.CustomButton.Location = new System.Drawing.Point(410, 1);
+            this.outputFileTxt.CustomButton.Location = new System.Drawing.Point(409, 1);
             this.outputFileTxt.CustomButton.Name = "";
             this.outputFileTxt.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.outputFileTxt.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.outputFileTxt.CustomButton.TabIndex = 1;
             this.outputFileTxt.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.outputFileTxt.CustomButton.UseSelectable = true;
-            this.outputFileTxt.CustomButton.Visible = false;
             this.outputFileTxt.Lines = new string[0];
             this.outputFileTxt.Location = new System.Drawing.Point(106, 92);
             this.outputFileTxt.MaxLength = 32767;
@@ -140,14 +145,18 @@
             this.outputFileTxt.SelectionLength = 0;
             this.outputFileTxt.SelectionStart = 0;
             this.outputFileTxt.ShortcutsEnabled = true;
-            this.outputFileTxt.Size = new System.Drawing.Size(432, 23);
+            this.outputFileTxt.ShowButton = true;
+            this.outputFileTxt.Size = new System.Drawing.Size(431, 23);
             this.outputFileTxt.TabIndex = 25;
             this.outputFileTxt.UseSelectable = true;
             this.outputFileTxt.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.outputFileTxt.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.outputFileTxt.ButtonClick += new MetroFramework.Controls.MetroTextBox.ButClick(this.outputFileTxt_ButtonClick);
             // 
             // timeElpasedlbl
             // 
+            this.timeElpasedlbl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.timeElpasedlbl.Location = new System.Drawing.Point(535, 136);
             this.timeElpasedlbl.Name = "timeElpasedlbl";
             this.timeElpasedlbl.Size = new System.Drawing.Size(93, 23);
@@ -165,6 +174,8 @@
             // 
             // timeElapsed
             // 
+            this.timeElapsed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.timeElapsed.Location = new System.Drawing.Point(634, 136);
             this.timeElapsed.Name = "timeElapsed";
             this.timeElapsed.Size = new System.Drawing.Size(118, 23);
@@ -311,7 +322,7 @@
             ".wmv",
             ".flv",
             ".mov"});
-            this.fileType.Location = new System.Drawing.Point(535, 92);
+            this.fileType.Location = new System.Drawing.Point(543, 92);
             this.fileType.Name = "fileType";
             this.fileType.Size = new System.Drawing.Size(88, 23);
             this.fileType.TabIndex = 43;

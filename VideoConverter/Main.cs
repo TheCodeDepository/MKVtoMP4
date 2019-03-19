@@ -19,6 +19,8 @@ namespace VideoConverter
         }
 
         public string Input { get { return inputFileTxt.Text; } set { inputFileTxt.Text = value; } }
+
+        public string CustomOutput { get; set; }
         public string Output { get { return outputFileTxt.Text; } set { outputFileTxt.Text = value; } }
 
         public Engine ffmpegEngine { get; set; }
@@ -39,7 +41,7 @@ namespace VideoConverter
         private void ConvertVideo()
         {
             ffmpegEngine = new Engine("ffmpeg.exe");
-
+         
             ffmpegEngine.Progress += OnProgress;
             ffmpegEngine.Complete += OnComplete;
 
@@ -158,10 +160,26 @@ namespace VideoConverter
 
         private void fileType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(fileType.Text) && !String.IsNullOrWhiteSpace(Input))
+            if (!String.IsNullOrWhiteSpace(CustomOutput))
+            {
+                Output = UpdateSamplePath(CustomOutput, fileType.Text);
+            }
+            else if(!String.IsNullOrWhiteSpace(Input))
             {
                 Output = UpdateSamplePath(Input, fileType.Text);
             }
+        }
+
+        private void outputFileTxt_ButtonClick(object sender, EventArgs e)
+        {
+            SaveFileDialog save = new SaveFileDialog();
+            save.Filter = "MPEG-4 (*.mp4)|*.mp4|FLV (*.flv)|*.flv|MKV (*.mkv)|*.mkv|MOV (*.mov)|*.mov|AVI (*.avi)|*.avi|WMV (*.wmv)|*.wmv";
+            save.DefaultExt = "mp4";
+            if (save.ShowDialog() == DialogResult.OK)
+            {
+                CustomOutput = save.FileName;
+                Output = UpdateSamplePath(CustomOutput, Path.GetExtension(save.FileName));
+            } 
         }
     }
 }
