@@ -66,8 +66,7 @@
             // 
             // startConvertBtn
             // 
-            this.startConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.startConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.startConvertBtn.Location = new System.Drawing.Point(648, 63);
             this.startConvertBtn.Name = "startConvertBtn";
             this.startConvertBtn.Size = new System.Drawing.Size(106, 23);
@@ -78,8 +77,7 @@
             // 
             // cancelConvertBtn
             // 
-            this.cancelConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cancelConvertBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelConvertBtn.Enabled = false;
             this.cancelConvertBtn.Location = new System.Drawing.Point(648, 92);
             this.cancelConvertBtn.Name = "cancelConvertBtn";
@@ -333,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 332);
+            this.ClientSize = new System.Drawing.Size(800, 330);
             this.Controls.Add(this.fileType);
             this.Controls.Add(this.ConversionStates);
             this.Controls.Add(this.metroLabel3);
@@ -348,6 +346,8 @@
             this.Controls.Add(this.timeElpasedlbl);
             this.Controls.Add(this.progressBar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 330);
             this.Name = "Main";
             this.Text = "Video Converter";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
