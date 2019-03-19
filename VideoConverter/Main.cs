@@ -41,12 +41,48 @@ namespace VideoConverter
         private void ConvertVideo()
         {
             ffmpegEngine = new Engine("ffmpeg.exe");
-         
+
+
+            //var conversionOptions = new ConversionOptions
+            //{
+            //    AudioBitRate = 190,
+            //    BaselineProfile = true,
+            //    AudioSampleRate = AudioSampleRate.Hz48000,
+            //    CustomHeight = 100,
+            //    CustomWidth = 100,
+            //    MaxVideoDuration = new TimeSpan(1000000),
+            //    Seek = new TimeSpan(1000000),
+            //    SourceCrop = new CropRectangle
+            //    {
+            //        Height = 100,
+            //        Width = 100,
+            //        X = 100,
+            //        Y = 100
+            //    },
+            //    Target = Target.Default,
+            //    TargetStandard = TargetStandard.FILM,
+            //    VideoAspectRatio = VideoAspectRatio.R16_10,
+            //    VideoBitRate = 1000,
+            //    VideoFps = 100,
+            //    VideoSize = VideoSize.Hd720
+            //};
+                       
             ffmpegEngine.Progress += OnProgress;
             ffmpegEngine.Complete += OnComplete;
+            ffmpegEngine.Error += OnError;
 
             ffmpegEngine.ConvertAsync(new MediaFile(Input), new MediaFile(Output));
             Processing = true;
+        }
+
+        private void OnError(object sender, ConversionErrorEventArgs e)
+        {
+            Process[] procs = Process.GetProcessesByName("ffmpeg");
+            foreach (Process proc in procs)
+            {
+                proc.Kill();
+            }
+            MetroMessageBox.Show(this, "An Error Has Occured, the process has been terminated." + e.Exception.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void UpdateFields(ConversionProgressEventArgs e)
@@ -69,7 +105,6 @@ namespace VideoConverter
             sizeBox.Text = (e.SizeKb / 1000.00).ToString() + " MB";
             processedBox.Text = new TimeSpan(0, 0, 0, (int)processed).ToString();
         }
-
 
 
         //Events
@@ -164,7 +199,7 @@ namespace VideoConverter
             {
                 Output = UpdateSamplePath(CustomOutput, fileType.Text);
             }
-            else if(!String.IsNullOrWhiteSpace(Input))
+            else if (!String.IsNullOrWhiteSpace(Input))
             {
                 Output = UpdateSamplePath(Input, fileType.Text);
             }
@@ -179,7 +214,7 @@ namespace VideoConverter
             {
                 CustomOutput = save.FileName;
                 Output = UpdateSamplePath(CustomOutput, Path.GetExtension(save.FileName));
-            } 
+            }
         }
     }
 }
